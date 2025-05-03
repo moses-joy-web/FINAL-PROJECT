@@ -1,0 +1,66 @@
+.jj {
+    width: 100%;
+    border-bottom-right-radius: 20px;
+    z-index: 10; /* Ensure it appears above other elements */
+    position: relative; /* Prevent overlapping */
+}
+
+.gap{
+    gap: 20%;
+}
+
+.gaps{
+    gap: 10%;
+}
+
+.small{
+    border-bottom-color: rgb(0, 124, 52);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.log{
+    outline-color: white;
+}
+.log :hover{
+    color: #e68c3a;
+}
+
+
+
+@media (max-width: 768px) {
+    .logos img {
+        width: 50%; /* Increase the logo size on small screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap */
+        justify-content: space-between; /* Add spacing between buttons */
+    }
+
+    .buttons-container button {
+        width: 48%; /* Ensure two buttons fit in one row */
+        margin-bottom: 10%; /* Add spacing between rows */
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+  
+    .logos img {
+      width: 100%; /* Make the image take full width */
+      max-width: 300px; /* Optional: Limit the maximum width */
+      margin: 0 auto; /* Center the image */
+    }
+  
+    .row.g-0 {
+      padding: 1rem; /* Add padding to the row for smaller screens */
+    }
+  }

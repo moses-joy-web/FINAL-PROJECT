@@ -1,0 +1,68 @@
+.get{
+    border-radius: 10%;
+    width: 100%;
+}
+
+.text{
+    padding: 15%;
+
+}
+
+
+.meal{
+    width: 70%;
+}
+
+
+.pic{
+    /* border-radius: 30px; */
+    border-bottom-left-radius: 10%;
+    border-top-left-radius: 10%;
+}
+.pics{
+    /* border-radius: 30px; */
+    border-bottom-right-radius: 10%;
+    border-top-right-radius: 10%;
+}
+
+.picss{
+    /* border-radius: 30px; */
+    border-bottom-right-radius: 10%;
+    border-top-left-radius: 10%;
+}
+
+
+
+
+
+html, body{
+    overflow-x: hidden;
+}
+
+/* Default styles for the About Section */
+.about {
+    background-color: #336021;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    width: 130%
+  }
+  
+  /* Responsive styles for smaller screens */
+  @media (max-width: 768px) {
+    .about {
+      text-align: center; 
+      /* padding: 1rem;  */
+      width: 100%;
+    }
+  
+    .about img {
+      width: 100%; /* Make the image take full width */
+      max-width: 300px; /* Optional: Limit the maximum width */
+      margin: 0 auto; /* Center the image */
+    }
+  
+    .row.g-0 {
+      padding: 1rem; /* Add padding to the row for smaller screens */
+    }
+  }
