@@ -5,28 +5,45 @@ import joy from "../assets/pic7.png";
 import axios from "axios";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
+  const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const allValues = { email, password };
-    console.log(allValues);
-
-    const url = "http://localhost:5200/signin"; 
+      if (!mail || !password) {
+          setMessage("Please fill all the fields");
+          setMessageType("error");
+          setTimeout(() => setMessage(""), 2000);
+          return;
+      }
     
-    try {
-      const res = await axios.post(url, allValues);
-      console.log(res);
-      navigate("/dashboard");
-    } catch (error) {
-      console.log(error);
-      
-    }
-
-   
+      const allData = { mail, password, };
+      const url = "http://localhost:5200/signin"; 
+    
+      try {
+          const res = await axios.post(url, allData);
+          if (res.status === 200 || res.status === 201) {
+              setMessage("User Signed In Successfully");
+              setMessageType("success");
+              setTimeout(() => navigate("/dashboard"), 2000);
+          }
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+              setMessage("User not found");
+              setMessageType("error");
+          } else if (error.response && error.response.status === 401) {
+              setMessage("Invalid password");
+              setMessageType("error");
+              setMessage(error.response.data.error);
+          } 
+          setMessageType("error");
+      }
+    
   };
 
   return (
@@ -50,6 +67,7 @@ const Signin = () => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              filter: "blur(8px)", // Add blur effect
             }}
           />
           <div
@@ -59,8 +77,8 @@ const Signin = () => {
               left: 0,
               width: "100%",
               height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.5)", // Black with 50% opacity
-              zIndex: 1, // Ensure it sits above the image
+              backgroundColor: "rgba(0, 0, 0, 0.5)", 
+              zIndex: 1, 
             }}
           ></div>
           <div
@@ -76,7 +94,7 @@ const Signin = () => {
               whiteSpace: "nowrap",
               padding: "10px",
               borderRadius: "5px",
-              zIndex: 2, // Ensure it sits above the overlay
+              zIndex: 2, 
             }}
           >
             <p className="justify-content-center  align-items-center mb-0">
@@ -103,13 +121,24 @@ const Signin = () => {
                       <span className="text-light text-size-10">
                         WELCOME BACK
                       </span>
+                      {message && (
+  <p
+    className={`alert mt-3 text-center ${
+      messageType === "success" ? "alert-success" : "alert-danger"
+    }`}
+  >
+    {message}
+  </p>
+)}
                     </h1>
                     <div style={{ marginBottom: "1rem" }}></div>
                     <p className="text-light g-4" style={{ color: "#b8702e" }}>Sign in</p>
                   </div>
 
                   <form method="POST" action={Signin} style={{ textAlign: "left" }}>
-                    <div className="mb-3">
+                    
+
+                     <div className="mb-3">
                       <label
                         htmlFor="email"
                         className="form-label"
@@ -119,12 +148,12 @@ const Signin = () => {
                       </label>
                       <input
                         type="email"
-                        id="email"
+                        id="mail"
                         className="form-control bg-light"
                         placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        style={{ color: "black" }} // Light color for email input
+                        value={mail}
+                        onChange={(e) => setMail(e.target.value)}
+                        style={{ color: "black" }}
                       />
                     </div>
 
@@ -143,7 +172,7 @@ const Signin = () => {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        style={{ color: "black" }} // Light color for password input
+                        style={{ color: "black" }}
                       />
                     </div>
 

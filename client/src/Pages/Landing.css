@@ -66,3 +66,11 @@ html, body{
       padding: 1rem; /* Add padding to the row for smaller screens */
     }
   }
+
+
+
+
+  .meall {
+    border-radius: 1rem;
+    border-bottom-right-radius: 90%;
+  }

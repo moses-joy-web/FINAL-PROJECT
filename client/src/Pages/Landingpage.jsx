@@ -1,5 +1,6 @@
 import React from "react";
 import { GiCurledLeaf } from "react-icons/gi";
+import { Container, Card, Button, ListGroup } from 'react-bootstrap';
 import "./Landing.css";
 import joy from "../assets/pic1.png";
 import meal from "../assets/pic2.png";
@@ -8,6 +9,8 @@ import food from "../assets/pic5.png";
 import { useNavigate } from "react-router-dom";
 import { MdHorizontalRule } from "react-icons/md";
 import Navbar from "../../components/Navbar";
+import Cards from "../../components/Cards";
+import Footer from "../../components/Footer";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -155,7 +158,7 @@ const LandingPage = () => {
                       maxWidth: "100%",
                       height: "auto",
                       maxHeight: "500px",
-                    }} // Increased size
+                    }} 
                   />
                   <div
                     className="bg-dark bg-opacity-50 text"
@@ -249,7 +252,92 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+      
+
+      <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+    <div className="container my-5">
+      <div className="row align-items-center rounded-4 p-4" style={{ backgroundColor: '#335424' }}>
+        <div className="col-md-6 text-white px-5">
+          <button className="btn btn-sm mb-2" style={{ backgroundColor: '#b8702e', color: 'white' }}>Meal Insights</button>
+          <h3 className="fw-bold">Eat With <span style={{ color: '#b8702e' }}>Clarity</span></h3>
+          <p className="my-3">Access a dynamic dashboard that gives you an overview of your weekly nutrition, progress, and habits — so you're always one step ahead of your goals.</p>
+          <ul className="list-unstyled">
+            <li className="mb-2">• Daily calorie breakdown</li>
+            <li className="mb-2">• Nutrition tracking</li>
+            <li>• Trends and insights to keep you informed</li>
+          </ul>
+          <button className="btn btn-outline-light mt-3">Get started</button>
+        </div>
+        <div className="col-md-6 text-center">
+          <div className="img-wrapper p-2 rounded-4 d-inline-block" style={{ width: '100%', maxWidth: '400px', backgroundColor: '#b8702e', borderTopLeftRadius: '100px' }}>
+            <img src={joy} alt="Meal" className="img-fluid rounded-4 w-100" style={{ maxHeight: '300px', objectFit: 'cover' }} />
+          </div>
+        </div>
+      </div>
     </div>
+
+
+    </div>
+    <div class="carousel-item">
+    <div className="container my-5">
+      <div className="row align-items-center rounded-4 p-4" style={{ backgroundColor: '#b8702e' }}>
+        <div className="col-md-6 text-white px-5">
+          <button className="btn btn-sm mb-2" style={{ backgroundColor: '#335424', color: 'white' }}>Meal Insights</button>
+          <h3 className="fw-bold">Eat With <span style={{ color: '#335424' }}>Clarity</span></h3>
+          <p className="my-3">Access a dynamic dashboard that gives you an overview of your weekly nutrition, progress, and habits — so you're always one step ahead of your goals.</p>
+          <ul className="list-unstyled">
+            <li className="mb-2">• Daily calorie breakdown</li>
+            <li className="mb-2">• Nutrition tracking</li>
+            <li>• Trends and insights to keep you informed</li>
+          </ul>
+          <button className="btn btn-outline-light mt-3">Get started</button>
+        </div>
+        <div className="col-md-6 text-center">
+          <div className="img-wrapper meall p-2 rounded-4 d-inline-block" style={{ width: '100%', maxWidth: '400px', backgroundColor: '#335424' }}>
+            <img src={meal} alt="Meal" className="img-fluid rounded-4 w-100" style={{ maxHeight: '300px', objectFit: 'cover' }} />
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+      <div className="container">
+<div className="d-flex mx-auto justify-content-center gap-3 align-item-center">
+            <div>
+              <h4
+                className="badge bg p-2"
+                style={{ backgroundColor: "#336021" }}
+              >
+                Testimonials
+              </h4>
+            </div>
+          </div>
+    </div>
+
+
+    <Cards />
+    <Footer />
+    </div>
+
+    
   );
 };
 

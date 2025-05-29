@@ -9,25 +9,56 @@ import axios from "axios";
 const Signup = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
+
 
   const submitForm = (e) => {
     e.preventDefault();
-    const allValues = {name, email, password, confirmPassword};
-    console.log(allValues);
+
+      if (!name || !mail || !password ) {
+        setMessage("Please fill all the fields");
+        setMessageType("error");
+        setTimeout(() => setMessage(""), 2000);
+        return;
+      }
+  
+      if (password.length < 6) {
+        setMessage("Password must be at least 6 characters long");
+        setMessageType("error");
+        setTimeout(() => setMessage(""), 2000);
+        return;
+      }
+      
+      const allValues = {name, mail, password};
+      console.log(allValues);
 
     const url = "http://localhost:5200/signup"; 
     axios.post(url, allValues)
-    .then((res) => {
-       console.log(res);
-       navigate("/signin");  
-       
-    }).catch((err) => {
-      // res.status(500).json({ message: "Error creating user" });
-      console.log(err);
-    })
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 201 || res.status === 200) {
+          setMessage("User Created Successfully");
+          setMessageType("success"); 
+          setTimeout(() => navigate("/Signin"), 3000); 
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        let errorMsg = "An error occurred. Please try again.";
+        if (err.response && err.response.data && err.response.data.message) {
+          errorMsg = err.response.data.message;
+        } else if (err.message) {
+          errorMsg = err.message;
+        }
+        setMessage(errorMsg);
+        setMessageType("error"); 
+        setTimeout(() => setMessage(""), 3000);
+      })
 
 
   };
@@ -54,6 +85,7 @@ const Signup = () => {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                filter: "blur(8px)", 
               }}
             />
             <div
@@ -111,6 +143,15 @@ const Signup = () => {
                         <span className="text-light text-size-10">
                           CREATE ACCOUNT
                         </span>
+                        {message && (
+  <p
+    className={`alert mt-3 text-center ${
+      messageType === "success" ? "alert-success" : "alert-danger"
+    }`}
+  >
+    {message}
+  </p>
+)}
                       </h1>
                     </div>
 
@@ -147,8 +188,8 @@ const Signup = () => {
                           id="email"
                           className="form-control bg-light"
                           placeholder="Enter your email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          value={mail}
+                          onChange={(e) => setMail(e.target.value)}
                           style={{ color: "black" }}
                         />
                       </div>
@@ -172,24 +213,6 @@ const Signup = () => {
                         />
                       </div>
 
-                      <div className="mb-3">
-                        <label
-                          htmlFor="confirmPassword"
-                          className="form-label"
-                          style={{ color: "#f8f9fa" }}
-                        >
-                          Confirm Password
-                        </label>
-                        <input
-                          type="password"
-                          id="confirmPassword"
-                          className="form-control bg-light"
-                          placeholder="Confirm your password"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
-                          style={{ color: "black" }}
-                        />
-                      </div>
 
                       <button onClick={submitForm}
                         type="submit"

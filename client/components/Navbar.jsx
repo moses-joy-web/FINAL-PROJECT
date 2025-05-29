@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import logo from '../src/assets/pic6.png';
-
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -21,13 +21,14 @@ const Navbar = () => {
           <a className="nav-link active" style={{ color: '#e68c3a' }} aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <Link class="nav-link" to="/About">About</Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Plan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          {/* <a class="nav-link disabled" aria-disabled="true">Tracker</a> */}
+          <a class="nav-link" href="true">Tracker</a>
         </li>
       </ul>
     </div>
