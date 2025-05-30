@@ -37,7 +37,8 @@ const Signup = () => {
       const allValues = {name, mail, password};
       console.log(allValues);
 
-    const url = "http://localhost:5200/signup"; 
+    const url = "https://final-project-8-f5nr.onrender.com/signup"; 
+    // const url = "http://localhost:5000/signup"; 
     axios.post(url, allValues)
       .then((res) => {
         console.log(res.data);
